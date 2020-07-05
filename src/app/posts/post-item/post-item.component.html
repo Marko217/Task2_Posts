@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-offset-3  col-md-6" >
+        <a href="#" class="list-group-item clearfix" style="margin-top: 15px;">
+            <div class="pull-left" style="display: block;" >
+                <p class="list-group-item-text">
+                    {{ post.textPost }}
+                </p>
+            </div><br>
+            <div class="row">
+                <button (click)="AllComment()"><span class="glyphicon glyphicon-comment" aria-hidden="true"><a href="#" style="text-decoration: none;"> {{countComment}}</a></span></button>
+            </div>
+            <div class="row" *ngIf="!showComment">
+                <div class="col-md-12">
+                    <a href="#" class="list-group-item clearfix" style="margin-top: 15px;">
+                        <form>
+                            <label>Commnet</label>
+                            <textarea class="form-control" #commentText
+                            required rows="3"></textarea><br>
+                            <div class="row">
+                                <button class="btn btn-success"
+                                type="button" (click)="updatePosts(post, commentText.value)">Save comment</button>
+                            </div>
+                        </form>
+                        <br>
+                    </a>
+                </div>
+            </div><br>
+            <div *ngIf="!showComment" class="col-md-12">
+                    <div class="row comment" *ngFor="let comment of post.commentPost">
+                        <div class="col-md-1">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </div>
+                        <div class="col-md-7">
+                            {{ comment.textComment }}
+                        </div>
+                        <div class="col-md-3" style="padding: 0px;">
+                            {{ comment.dateComment | date: 'M/d/yy, h:mm a' }}
+                        </div>
+                    </div>
+                <br>
+            </div>
+        </a>
+    </div>
+</div>
